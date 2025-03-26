@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:23:51 by alejandj          #+#    #+#             */
-/*   Updated: 2025/03/24 19:23:13 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/03/26 22:43:09 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@
 # include <limits.h>
 # include "../libft/libft.h"
 
-typedef struct stack
+typedef struct s_stack
 {
-    int  content;
-    struct stack *next; 
-}t_stack;
+    t_list *head;
+} t_stack;
 
+// Additional Functions
+void	free_stacks(t_stack *stack_a);
 
 
 #endif
