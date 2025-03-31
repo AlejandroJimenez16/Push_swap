@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:52:19 by alejandj          #+#    #+#             */
-/*   Updated: 2025/03/30 21:01:32 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/03/31 15:05:12 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_errors(char *error, t_stack *stack_a, t_stack *stack_b)
 void	fill_stack(int n, t_stack **stack_a, t_stack **stack_b)
 {
 	t_list	*node;
-	t_list *current;
+	t_list	*current;
 	int		*num;
 
 	num = malloc(sizeof(int));
@@ -36,7 +36,7 @@ void	fill_stack(int n, t_stack **stack_a, t_stack **stack_b)
 	if ((*stack_a)->head == NULL)
 	{
 		(*stack_a)->head = node;
-		return;
+		return ;
 	}
 	current = (*stack_a)->head;
 	while (current != NULL)
@@ -46,24 +46,14 @@ void	fill_stack(int n, t_stack **stack_a, t_stack **stack_b)
 		current = current->next;
 	}
 	ft_lstadd_back(&((*stack_a)->head), node);
-	
-	//----------Imprimir lista para ver-----------------
-	t_list *temp;
-	temp = (*stack_a)->head;
-	while (temp != NULL)
-	{
-		ft_printf("%d\n", *(int *)(temp->content));
-		temp = temp->next;
-	}
-	//---------------------------------------------------
 }
 
 void	validate_fill_stack(int argc, char *argv[], t_stack **stack_a, t_stack **stack_b)
 {
 	int	i;
-	int j;
-	int num;
-	int isneg;
+	int	j;
+	int	num;
+	int	isneg;
 
 	i = 1;
 	while (i < argc)
@@ -77,10 +67,10 @@ void	validate_fill_stack(int argc, char *argv[], t_stack **stack_a, t_stack **st
 			if (argv[i][j] == '-')
 			{
 				isneg = 1;
-				j++;	
+				j++;
 			}
 			if (!ft_isdigit(argv[i][j]))
-				print_errors("Only numbers are allowed", *stack_a, *stack_b);	
+				print_errors("Only numbers are allowed", *stack_a, *stack_b);
 			num = ft_atoi(&argv[i][j]);
 			if (isneg)
 				num = -num;
@@ -115,6 +105,7 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		print_errors("No arguments", stack_a, stack_b);
 	validate_fill_stack(argc, argv, &stack_a, &stack_b);
+	print_stack(stack_a);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);
