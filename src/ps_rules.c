@@ -1,92 +1,211 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pw_rules.c                                         :+:      :+:    :+:   */
+/*   ps_rules.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 20:10:15 by alejandj          #+#    #+#             */
-/*   Updated: 2025/03/30 20:57:45 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/03/31 17:15:36 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-
-void    swap_a(t_stack **stack_a)
+/*
+Swap the first two elements
+*/
+void	swap(t_stack **stack)
 {
-    t_list  *first;
-    t_list  *second;
-    void    *temp;
-    int     size;
+	t_list	*first;
+	t_list	*second;
+	void	*temp;
+	int		size;
 
-    if (!stack_a || !*stack_a)
-        return ;
-    first = (*stack_a)->head;
-    second = first->next;
-    size = ft_lstsize((*stack_a)->head);
-    if (size <= 1)
-        return ;
-    temp = first->content;
-    first->content = second->content;
-    second->content = temp;
+	if (!stack || !*stack)
+		return ;
+	first = (*stack)->head;
+	second = first->next;
+	size = ft_lstsize((*stack)->head);
+	if (size <= 1)
+		return ;
+	temp = first->content;
+	first->content = second->content;
+	second->content = temp;
 }
 
-void    swap_b(t_stack **stack_b)
+/*
+Takes the first element from stack and puts it first in the oder stack 
+*/
+void    push(t_stack **stack_a, t_stack **stack_b)
 {
-    t_list  *first;
-    t_list  *second;
-    void    *temp;
-    int     size;
+    t_list  *node;
 
-    if (!stack_b || !*stack_b)
+    if (!stack_a || !stack_b)
         return ;
-    first = (*stack_b)->head;
-    second = first->next;
-    size >= ft_lstsize((*stack_b)->head);
-    if (size <= 1)
+    if ((*stack_b)->head == NULL)
         return ;
-    temp = first->content;
-    first->content = second->content;
-    second->content = temp;
+    if ((*stack_a)->head == NULL)
+        return ;
+    node = (*stack_b)->head;
+    (*stack_b)->head = (*stack_b)->head->next;
+    node->next = (*stack_a)->head;
+    (*stack_a)->head = node;
 }
 
+/*
+Move all elements in stack up one position, so that the first element become the last
 
-int main(void)
+[ [1] [5] [8] ] --> [ [5] [8] [1] ]
+
+*/
+void    rotate(t_stack **stack)
 {
-    t_stack *stack_a;
+     
+    
+    if (!stack)
+        return ;
+    
+}
 
-    stack_a = malloc(sizeof(t_stack));
+//  ===========
+// || Swap test ||
+//  ===========
 
-    int *a = malloc(sizeof(int));
-    int *b = malloc(sizeof(int));
-    int *c = malloc(sizeof(int));
+/*
+int	main(void)
+{
+	t_stack	*stack_a;
+	int		*a;
+	int		*b;
+	int		*c;
+	t_list	*nodo1;
+	t_list	*nodo2;
+	t_list	*nodo3;
+	t_list	*current;
 
-    *a = 1;
-    *b = 2;
-    *c = 3;
-
-    t_list *nodo1 = ft_lstnew(a);
-    t_list *nodo2 = ft_lstnew(b);
-    t_list *nodo3 = ft_lstnew(c);
-
-    ft_lstadd_back(&(stack_a->head), nodo1);
-    ft_lstadd_back(&(stack_a->head), nodo2);
-    ft_lstadd_back(&(stack_a->head), nodo3);
-
-    ft_printf("Antes swap:\n");
-    t_list *current = stack_a->head;
-    while (current != NULL)
+	stack_a = malloc(sizeof(t_stack));
+	a = malloc(sizeof(int));
+	b = malloc(sizeof(int));
+	c = malloc(sizeof(int));
+	*a = 2;
+	*b = 3;
+	*c = 4;
+	nodo1 = ft_lstnew(a);
+	nodo2 = ft_lstnew(b);
+	nodo3 = ft_lstnew(c);
+	ft_lstadd_back(&(stack_a->head), nodo1);
+	ft_lstadd_back(&(stack_a->head), nodo2);
+	ft_lstadd_back(&(stack_a->head), nodo3);
+	ft_printf("Antes swap:\n");
+	current = stack_a->head;
+	while (current != NULL)
 	{
 		ft_printf("%d\n", *(int *)(current->content));
 		current = current->next;
 	}
-    swap_a(&stack_a);
-    ft_printf("Despues swap:\n");
-    current = stack_a->head;
-    while (current != NULL)
+	swap_a(&stack_a);
+	ft_printf("Despues swap:\n");
+	current = stack_a->head;
+	while (current != NULL)
 	{
 		ft_printf("%d\n", *(int *)(current->content));
 		current = current->next;
 	}
 }
+*/
+
+//  ===========
+// || Push test ||
+//  ===========
+
+/*
+int	main(void)
+{
+    t_stack *stack_a = malloc(sizeof(t_stack));
+	t_stack	*stack_b = malloc(sizeof(t_stack));
+    
+    //Values a
+    int *a1 = malloc(sizeof(int));
+    int *a2 = malloc(sizeof(int));
+    int *a3 = malloc(sizeof(int));
+    
+    *a1 = 2;
+    *a2 = 3;
+    *a3 = 4;
+    
+    //Values b
+    int *b1 = malloc(sizeof(int));
+    int *b2 = malloc(sizeof(int));
+    int *b3 = malloc(sizeof(int));
+
+    *b1 = 6;
+    *b2 = 5;
+    *b3 = 10;
+
+    //Nodes a
+    t_list *n1a = ft_lstnew(a1);
+    t_list *n2a = ft_lstnew(a2);
+    t_list *n3a = ft_lstnew(a3);
+
+    //Nodes b
+    t_list *n1b = ft_lstnew(b1);
+    t_list *n2b = ft_lstnew(b2);
+    t_list *n3b = ft_lstnew(b3);
+
+    //Add nodes stack_a
+    ft_lstadd_back(&(stack_a->head), n1a);
+    ft_lstadd_back(&(stack_a->head), n2a);
+    ft_lstadd_back(&(stack_a->head), n3a);
+
+    //Add nodes stack_b
+    ft_lstadd_back(&(stack_b->head), n1b);
+    ft_lstadd_back(&(stack_b->head), n2b);
+    ft_lstadd_back(&(stack_b->head), n3b);
+    
+    //Print stacks
+    ft_printf("Before push\n");
+
+    ft_printf("Stack a\n");
+    
+    t_list *current_a;
+    current_a = stack_a->head;
+    while (current_a != NULL)
+    {
+        ft_printf("%d\n", *(int *)(current_a->content));
+        current_a = current_a->next;
+    }
+    
+    ft_printf("Stack b\n");
+    
+    t_list *current_b;
+    current_b = stack_b->head;
+    while (current_b != NULL)
+    {
+        ft_printf("%d\n", *(int *)(current_b->content));
+        current_b = current_b->next;
+    }
+    
+    ft_printf("After push\n");
+    
+    push(&stack_a, &stack_b);
+
+    ft_printf("Stack a\n");
+    
+    current_a = stack_a->head;
+    while (current_a != NULL)
+    {
+        ft_printf("%d\n", *(int *)(current_a->content));
+        current_a = current_a->next;
+    }
+    
+    ft_printf("Stack b\n");
+    
+    current_b = stack_b->head;
+    while (current_b != NULL)
+    {
+        ft_printf("%d\n", *(int *)(current_b->content));
+        current_b = current_b->next;
+    }
+}
+*/
