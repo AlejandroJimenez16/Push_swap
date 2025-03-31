@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 22:19:54 by alejandj          #+#    #+#             */
-/*   Updated: 2025/03/30 20:07:19 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/03/31 15:04:59 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	free_stack(t_stack *stack)
 {
-	t_list *current;
-	t_list *next;
-	
+	t_list	*current;
+	t_list	*next;
+
 	current = stack->head;
 	while (current != NULL)
 	{
@@ -26,4 +26,16 @@ void	free_stack(t_stack *stack)
 		current = next;
 	}
 	free(stack);
+}
+
+void	print_stack(t_stack *stack)
+{
+	t_list	*current;
+
+	current = stack->head;
+	while (current != NULL)
+	{
+		ft_printf("%d\n", *(int *)(current->content));
+		current = current->next;
+	}
 }
