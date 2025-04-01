@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:23:51 by alejandj          #+#    #+#             */
-/*   Updated: 2025/03/31 14:57:39 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:15:31 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ typedef struct s_stack
 
 // Additional Functions
 void	free_stack(t_stack *stack);
+void	free_arr(char **arr);
+void	print_errors(t_stack *stack_a, t_stack *stack_b);
 void	print_stack(t_stack *stack);
+
 
 // Rules
 void		swap(t_stack **stack);
