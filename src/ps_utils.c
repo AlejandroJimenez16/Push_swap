@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 22:19:54 by alejandj          #+#    #+#             */
-/*   Updated: 2025/03/31 15:04:59 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/01 14:38:58 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,24 @@ void	free_stack(t_stack *stack)
 		current = next;
 	}
 	free(stack);
+}
+
+void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+}
+
+void	print_errors(t_stack *stack_a, t_stack *stack_b)
+{
+	ft_printf("Error\n");
+	free_stack(stack_a);
+	free_stack(stack_b);
+	exit(1);
 }
 
 void	print_stack(t_stack *stack)
