@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 20:10:15 by alejandj          #+#    #+#             */
-/*   Updated: 2025/03/31 17:15:36 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/06 18:52:12 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    push(t_stack **stack_a, t_stack **stack_b)
     if ((*stack_a)->head == NULL)
         return ;
     node = (*stack_b)->head;
-    (*stack_b)->head = (*stack_b)->head->next;
+    (*stack_b)->head = node->next;
     node->next = (*stack_a)->head;
     (*stack_a)->head = node;
 }
@@ -61,10 +61,24 @@ Move all elements in stack up one position, so that the first element become the
 */
 void    rotate(t_stack **stack)
 {
-     
+     t_list *first;
     
-    if (!stack)
+    if (!stack || !(*stack) || !(*stack)->head)
         return ;
+    first =  (*stack)->head;
+    (*stack)->head = first->next;
+    first->next = NULL;
+    ft_lstadd_back(&(*stack)->head, first);
+}
+
+/*
+Move all elements in stack down one position, so that the first element become the last
+
+[ [1] [5] [8] ] --> [ [8] [1] [5] ]
+
+*/
+void    reverse_rotate(t_stack **stack)
+{
     
 }
 
@@ -207,5 +221,59 @@ int	main(void)
         ft_printf("%d\n", *(int *)(current_b->content));
         current_b = current_b->next;
     }
+}
+*/
+
+//  ==============
+// || Rotate test ||
+//  ==============
+
+/*
+int main(void)
+{
+    t_stack *stack = malloc(sizeof(t_stack));
+
+    int *n1 = malloc(sizeof(int));
+    int *n2 = malloc(sizeof(int));
+    int *n3 = malloc(sizeof(int));
+    int *n4 = malloc(sizeof(int));
+
+    *n1 = 5;
+    *n2 = 2;
+    *n3 = 8;
+    *n4 = 1;
+
+    t_list *node1 = ft_lstnew(n1);
+    t_list *node2 = ft_lstnew(n2);
+    t_list *node3 = ft_lstnew(n3);
+    t_list *node4 = ft_lstnew(n4);
+
+    ft_lstadd_back(&(stack->head), node1);
+    ft_lstadd_back(&(stack->head), node2);
+    ft_lstadd_back(&(stack->head), node3);
+    ft_lstadd_back(&(stack->head), node4);
+
+    ft_printf("Before rotate\n");
+
+    t_list *current = stack->head;
+    while(current != NULL)
+    {
+        ft_printf("%d\n", *(int *)(current->content));
+        current = current->next;
+    }
+    
+    ft_printf("After rotate\n");
+
+    rotate(&stack);
+
+    int size = ft_lstsize(stack->head);
+
+    current = stack->head;
+    while(current != NULL)
+    {
+        ft_printf("%d\n", *(int *)(current->content));
+        current = current->next;
+    }
+    ft_printf("Size : %d\n", size);
 }
 */
