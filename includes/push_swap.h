@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:23:51 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/09 17:39:06 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:12:50 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	rrb(t_stack **stack_b);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 
 // Sorting functions
+int		is_sort(t_stack **stack);
 void	sort3(t_stack **stack_a);
 
 #endif
