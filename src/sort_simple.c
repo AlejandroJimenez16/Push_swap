@@ -6,31 +6,13 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:08:50 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/11 14:47:57 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/12 01:39:08 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	is_sort(t_stack **stack)
-{
-	t_list	*current;
-
-	if (!stack || !(*stack) || !(*stack)->head || !(*stack)->head->next)
-		return (1);
-	current = (*stack)->head;
-	while (current->next != NULL)
-	{
-		if (*(int *)(current->content) > *(int *)(current->next->content))
-		{
-			return (0);
-		}
-		current = current->next;
-	}
-	return (1);
-}
-
-void	sort_options(int a, int b, int c, t_stack **stack)
+void	sort_options_3(int a, int b, int c, t_stack **stack)
 {
 	if (a > b && b > c)
 		sa(stack);
@@ -57,21 +39,46 @@ void	sort3(t_stack **stack)
 		a = *(int *)(first->content);
 		b = *(int *)(first->next->content);
 		c = *(int *)(last->content);
-		sort_options(a, b, c, stack);
+		sort_options_3(a, b, c, stack);
 		if (is_sort(stack) == 1)
 			break ;
 	}
 }
 
+void	sort_options_4(t_stack **stack_a, t_stack **stack_b, int pos_min)
+{
+	if (pos_min == 0)
+		pb(stack_b, stack_a);
+	else if (pos_min == 1)
+	{
+		ra(stack_a);
+		pb(stack_b, stack_a);
+	}
+	else if (pos_min == 2)
+	{
+		rra(stack_a);
+		rra(stack_a);
+		pb(stack_b, stack_a);
+	}
+	else if (pos_min == 3)
+	{
+		rra(stack_a);
+		pb(stack_b, stack_a);
+	}
+}
+
 void	sort4(t_stack **stack_a, t_stack **stack_b)
 {
+	int	pos_min;
+
 	if (!stack_a || !(*stack_a) || !(*stack_a)->head || !(*stack_a)->head->next)
 		return ;
-	if (!stack_b || !(*stack_b) || !(*stack_b)->head || !(*stack_b)->head->next)
+	if (!stack_b)
 		return ;
-	pb(stack_b, stack_a);
-	print_stack(*stack_a);
-	print_stack(*stack_b);
+	if (is_sort(stack_a) == 1)
+		return ;
+	pos_min = get_pos_num_min(*stack_a);
+	sort_options_4(stack_a, stack_b, pos_min);
 	sort3(stack_a);
 	pa(stack_a, stack_b);
 }
