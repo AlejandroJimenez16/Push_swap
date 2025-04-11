@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:14:30 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/11 12:48:30 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/12 01:24:57 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 /*
 Takes the first element from stack and puts it first in the oder stack
 */
-void	push(t_stack **stack_a, t_stack **stack_b)
+void	push(t_stack **dest, t_stack **src)
 {
 	t_list	*node;
 
-	if (!stack_a || !(*stack_a) || !(*stack_a)->head || !(*stack_a)->head->next)
+	if (!dest)
 		return ;
-	if (!stack_b || !(*stack_b) || !(*stack_b)->head || !(*stack_b)->head->next)
+	if (!src)
 		return ;
-	node = (*stack_b)->head;
-	(*stack_b)->head = node->next;
-	node->next = (*stack_a)->head;
-	(*stack_a)->head = node;
+	node = (*src)->head;
+	(*src)->head = node->next;
+	node->next = (*dest)->head;
+	(*dest)->head = node;
 }
 
 void    pa(t_stack **stack_a, t_stack **stack_b)
@@ -114,7 +114,7 @@ int	main(void)
 		current_b = current_b->next;
 	}
 	ft_printf("After push\n");
-	push(&stack_a, &stack_b);
+	pb(&stack_b, &stack_a);
 	ft_printf("Stack a\n");
 	current_a = stack_a->head;
 	while (current_a != NULL)
