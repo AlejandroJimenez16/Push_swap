@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:52:19 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/11 13:13:32 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/12 01:09:04 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	main(int argc, char *argv[])
 		print_errors(stack_a, stack_b);
 	validate_fill_stack(argc, argv, &stack_a, &stack_b);
 	print_stack(stack_a);
-	sort3(&stack_a);
+	sort4(&stack_a, &stack_b);
 	ft_printf("Despues\n");
 	print_stack(stack_a);
 	free_stack(stack_a);
