@@ -6,7 +6,7 @@
 #    By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/10 12:20:22 by alejandj          #+#    #+#              #
-#    Updated: 2025/04/10 16:13:03 by alejandj         ###   ########.fr        #
+#    Updated: 2025/04/12 01:32:18 by alejandj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ LIBFT = $(LIBDIR)/libft.a
 SRC =	src/push_swap.c		\
 		src/ps_utils.c		\
 		src/sort_simple.c	\
+		src/sort_utils.c	\
 		src/rules/swap.c	\
 		src/rules/push.c	\
 		src/rules/rotate.c	\
