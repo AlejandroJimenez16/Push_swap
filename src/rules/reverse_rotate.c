@@ -6,11 +6,11 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:35:36 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/09 17:37:28 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/11 12:32:44 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 /*
 Move all elements in stack down one position,

@@ -6,11 +6,11 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:14:30 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/10 13:03:53 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/11 12:48:30 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 /*
 Takes the first element from stack and puts it first in the oder stack

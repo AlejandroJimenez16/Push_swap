@@ -6,11 +6,11 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:02:27 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/09 17:26:08 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/11 12:32:33 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 /*
 Swap the first two elements
