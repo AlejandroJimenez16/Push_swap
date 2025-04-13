@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:14:30 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/12 01:24:57 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/12 19:07:00 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	push(t_stack **dest, t_stack **src)
 
 	if (!dest)
 		return ;
-	if (!src)
+	if (!src || !(*src) || !(*src)->head)
 		return ;
 	node = (*src)->head;
 	(*src)->head = node->next;
