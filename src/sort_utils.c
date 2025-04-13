@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 01:29:07 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/12 01:30:33 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/12 20:33:37 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,24 @@ int	get_pos_num_min(t_stack *stack)
 		current = current->next;
 	}
 	return (pos);
+}
+
+void	manage_sort(t_stack **stack_a, t_stack **stack_b)
+{
+	int	size;
+	
+	size = ft_lstsize((*stack_a)->head);
+	if (size == 1)
+		return;
+	else if (size == 2)
+	{
+		if (*(int *)((*stack_a)->head->content) > *(int *)((*stack_a)->head->next->content))
+			sa(stack_a);
+	}
+	else if (size == 3)
+		sort3(stack_a);
+	else if (size == 4)
+		sort4(stack_a, stack_b);
+	else if (size == 5)
+		sort5(stack_a, stack_b);
 }
