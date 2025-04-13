@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:08:50 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/12 01:39:08 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/12 20:12:40 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	sort3(t_stack **stack)
 	int		b;
 	int		c;
 
-	if (!stack || !(*stack) || !(*stack)->head || !(*stack)->head->next)
+	if (!stack || !(*stack) || !(*stack)->head)
+		return ;
+	if (is_sort(stack) == 1)
 		return ;
 	while (1)
 	{
@@ -45,40 +47,63 @@ void	sort3(t_stack **stack)
 	}
 }
 
-void	sort_options_4(t_stack **stack_a, t_stack **stack_b, int pos_min)
+void	sort_options_4_5(t_stack **stack_a, t_stack **stack_b, int pos_min)
 {
+	int	len;
+
+	len = ft_lstsize((*stack_a)->head);
 	if (pos_min == 0)
-		pb(stack_b, stack_a);
-	else if (pos_min == 1)
 	{
-		ra(stack_a);
 		pb(stack_b, stack_a);
+		return ;
 	}
-	else if (pos_min == 2)
+	if (pos_min <= len / 2)
 	{
-		rra(stack_a);
-		rra(stack_a);
-		pb(stack_b, stack_a);
+		while (pos_min > 0)
+		{
+			ra(stack_a);
+			pos_min--;
+		}
 	}
-	else if (pos_min == 3)
+	else
 	{
-		rra(stack_a);
-		pb(stack_b, stack_a);
+		while (pos_min < len)
+		{
+			rra(stack_a);
+			pos_min++;
+		}
 	}
+	pb(stack_b, stack_a);
 }
 
 void	sort4(t_stack **stack_a, t_stack **stack_b)
 {
 	int	pos_min;
 
-	if (!stack_a || !(*stack_a) || !(*stack_a)->head || !(*stack_a)->head->next)
+	if (!stack_a || !(*stack_a) || !(*stack_a)->head)
 		return ;
 	if (!stack_b)
 		return ;
 	if (is_sort(stack_a) == 1)
 		return ;
 	pos_min = get_pos_num_min(*stack_a);
-	sort_options_4(stack_a, stack_b, pos_min);
+	sort_options_4_5(stack_a, stack_b, pos_min);
 	sort3(stack_a);
+	pa(stack_a, stack_b);
+}
+
+void	sort5(t_stack **stack_a, t_stack **stack_b)
+{
+	int	pos_min;
+
+	if (!stack_a || !(*stack_a) || !(*stack_a)->head)
+		return ;
+	if (!stack_b)
+		return ;
+	if (is_sort(stack_a) == 1)
+		return ;
+	pos_min = get_pos_num_min(*stack_a);
+	sort_options_4_5(stack_a, stack_b, pos_min);
+	sort4(stack_a, stack_b);
 	pa(stack_a, stack_b);
 }
