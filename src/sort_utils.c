@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 01:29:07 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/12 20:33:37 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/15 04:32:28 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,6 @@ void	manage_sort(t_stack **stack_a, t_stack **stack_b)
 		sort4(stack_a, stack_b);
 	else if (size == 5)
 		sort5(stack_a, stack_b);
+	else if (size > 5)
+		sort_heavy(stack_a, stack_b);
 }
