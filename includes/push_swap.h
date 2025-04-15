@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:23:51 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/12 20:34:34 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/15 04:03:50 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ typedef struct s_stack
 void	free_stack(t_stack *stack);
 void	free_arr(char **arr);
 void	print_errors(t_stack *stack_a, t_stack *stack_b);
+void	print_errors_arr(t_stack *stack_a, t_stack *stack_b, char **arr);
 void	print_stack(t_stack *stack);
+int		is_duplicate(t_stack *stack_a, int n);
 
 // Rules
 void	swap(t_stack **stack);
@@ -58,5 +60,8 @@ void	manage_sort(t_stack **stack_a, t_stack **stack_b);
 void	sort3(t_stack **stack_a);
 void	sort4(t_stack **stack_a, t_stack **stack_b);
 void	sort5(t_stack **stack_a, t_stack **stack_b);
+
+// Heavy Sorting functions
+void	sort_heavy(t_stack **stack_a, t_stack **stack_b);
 
 #endif
