@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:02:27 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/11 12:32:33 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:09:30 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ void	swap(t_stack **stack)
 	second->content = temp;
 }
 
-void    sa(t_stack **stack_a)
+void	sa(t_stack **stack_a)
 {
-    swap(stack_a);
-    ft_printf("sa\n");
+	swap(stack_a);
+	ft_printf("sa\n");
 }
 
-void    sb(t_stack **stack_b)
+void	sb(t_stack **stack_b)
 {
-    swap(stack_b);
-    ft_printf("sb\n");
+	swap(stack_b);
+	ft_printf("sb\n");
 }
 
 void	ss(t_stack **stack_a, t_stack **stack_b)
@@ -105,4 +105,3 @@ int	main(void)
 	}
 }
 */
-

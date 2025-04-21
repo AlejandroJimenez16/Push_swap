@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:14:30 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/12 19:07:00 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:09:01 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ void	push(t_stack **dest, t_stack **src)
 	(*dest)->head = node;
 }
 
-void    pa(t_stack **stack_a, t_stack **stack_b)
+void	pa(t_stack **stack_a, t_stack **stack_b)
 {
-    push(stack_a, stack_b);
-    ft_printf("pa\n");
+	push(stack_a, stack_b);
+	ft_printf("pa\n");
 }
 
-void    pb(t_stack **stack_b, t_stack **stack_a)
+void	pb(t_stack **stack_b, t_stack **stack_a)
 {
-    push(stack_b, stack_a);
-    ft_printf("pb\n");
+	push(stack_b, stack_a);
+	ft_printf("pb\n");
 }
 
 //  ===========

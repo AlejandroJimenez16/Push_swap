@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:35:36 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/11 12:32:44 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:09:13 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ void	reverse_rotate(t_stack **stack)
 	(*stack)->head = last;
 }
 
-void    rra(t_stack **stack_a)
+void	rra(t_stack **stack_a)
 {
-    reverse_rotate(stack_a);
-    ft_printf("rra\n");
+	reverse_rotate(stack_a);
+	ft_printf("rra\n");
 }
 
-void    rrb(t_stack **stack_b)
+void	rrb(t_stack **stack_b)
 {
-    reverse_rotate(stack_b);
-    ft_printf("rrb\n");
+	reverse_rotate(stack_b);
+	ft_printf("rrb\n");
 }
 
 void	rrr(t_stack **stack_a, t_stack **stack_b)
