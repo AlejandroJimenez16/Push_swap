@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 01:29:07 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/15 04:32:28 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/21 02:25:42 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,67 @@ int	get_pos_num_min(t_stack *stack)
 	return (pos);
 }
 
-void	manage_sort(t_stack **stack_a, t_stack **stack_b)
+int	get_pos_num_max(t_stack *stack)
 {
-	int	size;
-	
-	size = ft_lstsize((*stack_a)->head);
-	if (size == 1)
-		return;
-	else if (size == 2)
+	t_list	*current;
+	int		pos;
+	int		max;
+
+	if (!stack || !stack->head)
+		return (-1);
+	pos = 0;
+	current = stack->head;
+	max = *(int *)(current->content);
+	current = current->next;
+	while (current != NULL)
 	{
-		if (*(int *)((*stack_a)->head->content) > *(int *)((*stack_a)->head->next->content))
-			sa(stack_a);
+		if (*(int *)(current->content) > max)
+			max = *(int *)(current->content);
+		current = current->next;
 	}
-	else if (size == 3)
-		sort3(stack_a);
-	else if (size == 4)
-		sort4(stack_a, stack_b);
-	else if (size == 5)
-		sort5(stack_a, stack_b);
-	else if (size > 5)
-		sort_heavy(stack_a, stack_b);
+	current = stack->head;
+	while (*(int *)(current->content) != max)
+	{
+		pos++;
+		current = current->next;
+	}
+	return (pos);
+}
+
+int	get_min(t_stack *stack)
+{
+	t_list	*current;
+	int		min;
+
+	if (!stack || !stack->head)
+		return (-1);
+	current = stack->head;
+	min = *(int *)(current->content);
+	current = current->next;
+	while (current != NULL)
+	{
+		if (*(int *)(current->content) < min)
+			min = *(int *)(current->content);
+		current = current->next;
+	}
+	return (min);
+}
+
+int	get_max(t_stack *stack)
+{
+	t_list	*current;
+	int		max;
+
+	if (!stack || !stack->head)
+		return (-1);
+	current = stack->head;
+	max = *(int *)(current->content);
+	current = current->next;
+	while (current != NULL)
+	{
+		if (*(int *)(current->content) > max)
+			max = *(int *)(current->content);
+		current = current->next;
+	}
+	return (max);
 }
