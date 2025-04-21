@@ -6,18 +6,252 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:36:02 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/15 03:09:28 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/19 18:43:30 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int	get_pos_num(t_stack *stack, int num)
+{
+	t_list	*current;
+	int		pos;
+
+	pos = 0;
+	current = stack->head;
+	while (*(int *)(current->content) != num)
+	{
+		pos++;
+		current = current->next;
+	}
+	return (pos);
+}
+
+void	sort_heavy(t_stack **stack_a, t_stack **stack_b)
+{
+	int		min;
+	int		max;
+	int		step;
+	int		chunck_low;
+	int		chunck_hight;
+	t_list	*current;
+	int		pos;
+	int		len;
+	int		pos_max;
+	int		times;
+	int		size;
+
+	size = ft_lstsize((*stack_a)->head);
+	max = get_max(*stack_a);
+	while (1)
+	{
+		len = ft_lstsize((*stack_a)->head);
+		min = get_min(*stack_a);
+		step = (max - min) / 10;
+		chunck_low = min;
+		chunck_hight = (min + step);
+		current = (*stack_a)->head;
+		while (current != NULL)
+		{
+			if ((*(int *)(current->content) >= chunck_low) && (*(int *)(current->content) <= chunck_hight))
+			{
+				pos = get_pos_num(*stack_a, *(int *)(current->content));
+				if (pos <= len / 2)
+				{
+					while (pos > 0)
+					{
+						ra(stack_a);
+						pos--;
+					}
+				}
+				else
+				{
+					while (pos < len)
+					{
+						rra(stack_a);
+						pos++;
+					}
+				}
+				pb(stack_b, stack_a);
+				break;
+			}
+			else
+			{
+				current = current->next;
+			}
+		}
+		if (ft_lstsize((*stack_a)->head) == 0)
+			break;
+	}
+	times = 0;
+	while (times < size)
+	{
+		len = ft_lstsize((*stack_a)->head);
+		pos_max = get_pos_num_max(*stack_b);
+		if (pos_max == 0)
+		{
+			pa(stack_a, stack_b);
+			times++;
+		}
+		else
+		{
+			if (pos_max <= len / 2)
+			{
+				while (pos_max > 0)
+				{
+					ra(stack_b);
+					pos_max--;
+				}
+			}
+			else
+			{
+				while (pos_max < len)
+				{
+					rra(stack_b);
+					pos_max++;
+				}
+			}
+			pa(stack_a, stack_b);
+			times++;
+		}
+	}
+	ft_printf("Stack a\n");
+	print_stack(*stack_a);
+	ft_printf("Stack b\n");
+	print_stack(*stack_b);
+}
+
+// No consegui que funcione
 /*
 void    sort_heavy(t_stack **stack_a, t_stack **stack_b)
 {
+    int rot_count;
+    int send;
+    int pos_min;
+    int len;
+    int spin;
+    int groups;
+    int i;
+    t_list *current;
+    t_list *num;
+	
+    pos_min = 0;
+    len = ft_lstsize((*stack_a)->head);
+    rot_count = 0;
     
+    groups = len / 5;
+    
+    i = 0;
+    while (i < groups)
+    {
+        // Envio 5 numeros
+		send = 0;
+        while(send < 5)
+        {
+            pb(stack_b, stack_a);
+            send++;
+        }
+        
+    	// Ordeno el stack_b
+    	sort5(stack_b, stack_a);
+        
+    	//Recorrer a y colocar los nums en su posicion
+    	current = (*stack_a)->head;
+    	while (current)
+    	{
+        	if (!(*stack_b) || !(*stack_b)->head)
+            	break;
+        	num = (*stack_b)->head;
+        	if (*(int *)(num->content) < *(int *)(current->content))
+        	{
+            	pa(stack_a, stack_b);
+            	current = (*stack_a)->head;
+            	rot_count = 0;
+        	}
+        	else if ((*(int *)(num->content) < *(int *)(current->next->content))
+            	&& (*(int *)(num->content) > *(int *)(current->content)))
+        	{
+            	ra(stack_a);
+            	pa(stack_a, stack_b);
+            	current = (*stack_a)->head;
+            	rot_count = 0;
+        	}
+        	else
+        	{
+            	if (current->next == NULL)
+            	{
+                	pa(stack_a, stack_b);
+                	current = (*stack_a)->head;
+                	rot_count = 0;
+            	}
+            	else
+            	{
+                	ra(stack_a);
+                	current = (*stack_a)->head;
+                	rot_count++;
+            	}
+            	if (rot_count >= len)
+            	{
+                	pa(stack_a, stack_b);
+                	current = (*stack_a)->head;
+                	rot_count = 0;
+            	}
+        	}
+    	}
+	   
+    	// Colocar los nums en orden ascendente
+		pos_min = get_pos_num_min(*stack_a);
+		if (pos_min < len / 2)
+		{
+			while (pos_min > 0)
+			{
+				ra(stack_a);
+				pos_min--;
+			}
+		}
+		else
+		{
+			while (pos_min < len)
+			{
+				rra(stack_a);
+				pos_min++;
+			}
+		}
+    
+    	//Giro para enviar los 5 siguientes
+    	spin = 0;
+    	while (spin < 5)
+    	{
+        	ra(stack_a);
+        	spin++;
+    	}
+		i++;
+    }
+	// Colocar los nums en orden ascendente
+	pos_min = get_pos_num_min(*stack_a);
+	if (pos_min < len / 2)
+	{
+		while (pos_min > 0)
+		{
+			ra(stack_a);
+			pos_min--;
+		}
+	}
+	else
+	{
+		while (pos_min < len)
+		{
+			rra(stack_a);
+			pos_min++;
+		}
+	}
+    //Imprimir el stack
+    ft_printf("Stack a\n");
+    print_stack(*stack_a);
+    ft_printf("Stack b\n");
+    print_stack(*stack_b);
 }
 */
-
 
 // 30k movs
 /*
