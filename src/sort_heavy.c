@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:36:02 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/19 18:43:30 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:34:47 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	sort_heavy(t_stack **stack_a, t_stack **stack_b)
 	times = 0;
 	while (times < size)
 	{
-		len = ft_lstsize((*stack_a)->head);
+		len = ft_lstsize((*stack_b)->head);
 		pos_max = get_pos_num_max(*stack_b);
 		if (pos_max == 0)
 		{
@@ -99,7 +99,7 @@ void	sort_heavy(t_stack **stack_a, t_stack **stack_b)
 			{
 				while (pos_max > 0)
 				{
-					ra(stack_b);
+					rb(stack_b);
 					pos_max--;
 				}
 			}
@@ -107,7 +107,7 @@ void	sort_heavy(t_stack **stack_a, t_stack **stack_b)
 			{
 				while (pos_max < len)
 				{
-					rra(stack_b);
+					rrb(stack_b);
 					pos_max++;
 				}
 			}
@@ -115,10 +115,12 @@ void	sort_heavy(t_stack **stack_a, t_stack **stack_b)
 			times++;
 		}
 	}
+	/*
 	ft_printf("Stack a\n");
 	print_stack(*stack_a);
 	ft_printf("Stack b\n");
 	print_stack(*stack_b);
+	*/
 }
 
 // No consegui que funcione
