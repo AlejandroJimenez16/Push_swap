@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 03:59:40 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/18 23:57:34 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:32:33 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ int	is_duplicate(t_stack *stack_a, int n)
 void	manage_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	size;
-	
+
 	size = ft_lstsize((*stack_a)->head);
 	if (size == 1)
-		return;
+		return ;
 	else if (size == 2)
 	{
-		if (*(int *)((*stack_a)->head->content) > *(int *)((*stack_a)->head->next->content))
+		if (*(int *)((*stack_a)->head->content)
+			> *(int *)((*stack_a)->head->next->content))
 			sa(stack_a);
 	}
 	else if (size == 3)
