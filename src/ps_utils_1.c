@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_utils.c                                         :+:      :+:    :+:   */
+/*   ps_utils_1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 22:19:54 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/15 03:48:38 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:31:45 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,20 @@ void	free_arr(char **arr)
 {
 	int	i;
 
+	if (!arr)
+		return ;
 	i = 0;
 	while (arr[i])
-		free(arr[i++]);
+	{
+		free(arr[i]);
+		i++;
+	}
 	free(arr);
 }
 
 void	print_errors(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_printf("Error\n");
+	write(2, "Error\n", 6);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	exit(1);
@@ -48,10 +53,10 @@ void	print_errors(t_stack *stack_a, t_stack *stack_b)
 
 void	print_errors_arr(t_stack *stack_a, t_stack *stack_b, char **arr)
 {
-	ft_printf("Error\n");
+	write(2, "Error\n", 6);
+	free_arr(arr);
 	free_stack(stack_a);
 	free_stack(stack_b);
-	free_arr(arr);
 	exit(1);
 }
 

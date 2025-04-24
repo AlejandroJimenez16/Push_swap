@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:36:02 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/23 13:05:22 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/24 15:53:46 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ void	push_b_chunk(t_stack **stack_a, t_stack **stack_b, int chunk_low,
 {
 	t_list	*current;
 	int		pos;
-	int		chunk_mid;
 
-	chunk_mid = (chunk_low + chunk_high) / 2;
 	current = (*stack_a)->head;
 	while (current != NULL)
 	{
-		if (*(int *)(current->content) >= chunk_low && *(int *)(current->content) <= chunk_high)
+		if (*(int *)(current->content) >= chunk_low
+			&& *(int *)(current->content) <= chunk_high)
 		{
 			pos = get_pos_num(*stack_a, *(int *)(current->content));
 			if (pos <= ft_lstsize((*stack_a)->head) / 2)
@@ -48,7 +47,7 @@ void	push_b_chunk(t_stack **stack_a, t_stack **stack_b, int chunk_low,
 				while (pos++ < ft_lstsize((*stack_a)->head))
 					rra(stack_a);
 			pb(stack_b, stack_a);
-			if (*(int *)(current->content) < chunk_mid)
+			if (*(int *)(current->content) < (chunk_low + chunk_high) / 2)
 				rb(stack_b);
 			break ;
 		}
@@ -91,6 +90,8 @@ void	sort_heavy(t_stack **stack_a, t_stack **stack_b)
 	int	chunck_low;
 	int	chunck_hight;
 
+	if (is_sort(stack_a))
+		return ;
 	max = get_max(*stack_a);
 	while (1)
 	{

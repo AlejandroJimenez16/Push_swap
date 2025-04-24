@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:52:19 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/21 17:04:32 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:32:23 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,21 @@ int	is_number(char *arg)
 	return (1);
 }
 
-void	fill_stack(int n, t_stack **stack_a, t_stack **stack_b)
+void	fill_stack(int n, t_stack **stack_a, t_stack **stack_b, char **arr)
 {
 	t_list	*node;
 	int		*num;
 
 	num = malloc(sizeof(int));
 	if (!num)
-		print_errors(*stack_a, *stack_b);
+		print_errors_arr(*stack_a, *stack_b, arr);
 	*num = n;
 	node = ft_lstnew(num);
 	if (!node)
-		print_errors(*stack_a, *stack_b);
+	{
+		free(num);
+		print_errors_arr(*stack_a, *stack_b, arr);
+	}
 	if ((*stack_a)->head == NULL)
 	{
 		(*stack_a)->head = node;
@@ -49,7 +52,7 @@ void	fill_stack(int n, t_stack **stack_a, t_stack **stack_b)
 	{
 		free(node);
 		free(num);
-		print_errors(*stack_a, *stack_b);
+		print_errors_arr(*stack_a, *stack_b, arr);
 	}
 	ft_lstadd_back(&((*stack_a)->head), node);
 }
@@ -59,7 +62,7 @@ void	validate_fill_stack(int argc, char *argv[], t_stack **stack_a,
 {
 	int		i;
 	int		j;
-	int		num;
+	long	num;
 	char	**arr;
 
 	i = 1;
@@ -73,10 +76,10 @@ void	validate_fill_stack(int argc, char *argv[], t_stack **stack_a,
 		{
 			if (!is_number(arr[j]))
 				print_errors_arr(*stack_a, *stack_b, arr);
-			num = ft_atoi(arr[j]);
+			num = ft_atol(arr[j]);
 			if (num > INT_MAX || num < INT_MIN)
 				print_errors_arr(*stack_a, *stack_b, arr);
-			fill_stack(num, stack_a, stack_b);
+			fill_stack(num, stack_a, stack_b, arr);
 			j++;
 		}
 		free_arr(arr);
@@ -89,7 +92,7 @@ void	init_stacks(t_stack **stack_a, t_stack **stack_b)
 	*stack_a = malloc(sizeof(t_stack));
 	if (!*stack_a)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		free_stack(*stack_a);
 		exit(1);
 	}
@@ -107,7 +110,11 @@ int	main(int argc, char *argv[])
 
 	init_stacks(&stack_a, &stack_b);
 	if (argc < 2)
-		print_errors(stack_a, stack_b);
+	{
+		free_stack(stack_a);
+		free_stack(stack_b);
+		return (0);
+	}
 	validate_fill_stack(argc, argv, &stack_a, &stack_b);
 	manage_sort(&stack_a, &stack_b);
 	free_stack(stack_a);
