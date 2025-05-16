@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:23:51 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/24 17:30:35 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/05/16 13:26:45 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,8 @@ int			get_min(t_stack *stack);
 int			get_max(t_stack *stack);
 void		manage_sort(t_stack **stack_a, t_stack **stack_b);
 
-/*
 int			*stack_to_array(t_stack *stack);
 void		sort_arr(int *arr, int len);
-*/
 
 // Simple Sorting functions
 void		sort3(t_stack **stack_a);
