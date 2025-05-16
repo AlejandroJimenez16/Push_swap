@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 03:59:40 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/24 17:32:52 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/05/16 13:24:26 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	manage_sort(t_stack **stack_a, t_stack **stack_b)
 		sort_heavy(stack_a, stack_b);
 }
 
-/*
 int	*stack_to_array(t_stack *stack)
 {
 	t_list	*current;
@@ -107,4 +106,3 @@ void	sort_arr(int *arr, int len)
 		}
 	}
 }
-*/
