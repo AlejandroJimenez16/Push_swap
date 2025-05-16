@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:36:02 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/24 15:53:46 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:37:40 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,54 +27,62 @@ int	get_pos_num(t_stack *stack, int num)
 	return (pos);
 }
 
-void	push_b_chunk(t_stack **stack_a, t_stack **stack_b, int chunk_low,
-		int chunk_high)
+void	push_b_chunk(t_stack **stack_a, t_stack **stack_b, int low, int high)
 {
 	t_list	*current;
 	int		pos;
+	int		value;
+	int		found;
 
-	current = (*stack_a)->head;
-	while (current != NULL)
+	found = 1;
+	while (found)
 	{
-		if (*(int *)(current->content) >= chunk_low
-			&& *(int *)(current->content) <= chunk_high)
+		found = 0;
+		current = (*stack_a)->head;
+		while (current != NULL)
 		{
-			pos = get_pos_num(*stack_a, *(int *)(current->content));
-			if (pos <= ft_lstsize((*stack_a)->head) / 2)
-				while (pos-- > 0)
-					ra(stack_a);
-			else
-				while (pos++ < ft_lstsize((*stack_a)->head))
-					rra(stack_a);
-			pb(stack_b, stack_a);
-			if (*(int *)(current->content) < (chunk_low + chunk_high) / 2)
-				rb(stack_b);
-			break ;
-		}
-		else
+			value = *(int *)(current->content);
+			if (value >= low && value <= high)
+			{
+				pos = get_pos_num(*stack_a, value);
+				if (pos <= ft_lstsize((*stack_a)->head) / 2)
+					while (pos-- > 0)
+						ra(stack_a);
+				else
+					while (pos++ < ft_lstsize((*stack_a)->head))
+						rra(stack_a);
+				pb(stack_b, stack_a);
+				if (value < (low + high) / 2)
+					rb(stack_b);
+				found = 1;
+				break ;
+			}
 			current = current->next;
+		}	
 	}
 }
 
 void	push_max_a(t_stack **stack_a, t_stack **stack_b)
 {
 	int	pos_max;
+	int size;
 
 	while ((*stack_b)->head)
 	{
 		pos_max = get_pos_num_max(*stack_b);
+		size = ft_lstsize((*stack_b)->head);
 		if (pos_max == 0)
 			pa(stack_a, stack_b);
 		else
 		{
-			if (pos_max <= ft_lstsize((*stack_b)->head) / 2)
+			if (pos_max <= size / 2)
 			{
 				while (pos_max-- > 0)
 					rb(stack_b);
 			}
 			else
 			{
-				while (pos_max++ < ft_lstsize((*stack_b)->head))
+				while (pos_max++ < size)
 					rrb(stack_b);
 			}
 			pa(stack_a, stack_b);
@@ -84,30 +92,38 @@ void	push_max_a(t_stack **stack_a, t_stack **stack_b)
 
 void	sort_heavy(t_stack **stack_a, t_stack **stack_b)
 {
-	int	min;
-	int	max;
-	int	step;
-	int	chunck_low;
-	int	chunck_hight;
+	int i;
+	int size;
+	int	*arr;
+	int	chunk_size;
+	int	chunk_count;
+	int	low;
+	int	high;
 
 	if (is_sort(stack_a))
 		return ;
-	max = get_max(*stack_a);
-	while (1)
+	size = ft_lstsize((*stack_a)->head);
+	arr = stack_to_array(*stack_a);
+	if (!arr)
+		return ;
+	sort_arr(arr, size);
+	if (size <= 100)
+		chunk_count = 4;
+	else
+		chunk_count = 7;
+	chunk_size = size / chunk_count;
+	i = 0;
+	while (i < chunk_count)
 	{
-		min = get_min(*stack_a);
-		if (ft_lstsize((*stack_a)->head) < 100)
-			step = (max - min) / 5;
-		else if (ft_lstsize((*stack_a)->head) < 500)
-			step = (max - min) / 10;
+		low = arr[i * chunk_size];
+		if (i == chunk_count - 1)
+			high = arr[size - 1];
 		else
-			step = (max - min) / 20;
-		chunck_low = min;
-		chunck_hight = (min + step);
-		push_b_chunk(stack_a, stack_b, chunck_low, chunck_hight);
-		if (ft_lstsize((*stack_a)->head) == 0)
-			break ;
+			high = arr[(i + 1) * chunk_size - 1];
+		push_b_chunk(stack_a, stack_b, low, high);
+		i++;
 	}
+	free(arr);
 	push_max_a(stack_a, stack_b);
 }
 
