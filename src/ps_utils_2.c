@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 03:59:40 by alejandj          #+#    #+#             */
-/*   Updated: 2025/05/16 13:24:26 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/05/17 17:51:37 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,6 @@ int	is_duplicate(t_stack *stack_a, int n)
 		current = current->next;
 	}
 	return (0);
-}
-
-void	print_errors_num_node(t_stack *stack_a, t_stack *stack_b, t_list *node,
-		int *num)
-{
-	write(2, "Error\n", 6);
-	free(num);
-	free(node);
-	free_stack(stack_a);
-	free_stack(stack_b);
-	exit(1);
 }
 
 void	manage_sort(t_stack **stack_a, t_stack **stack_b)

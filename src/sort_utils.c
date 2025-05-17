@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 01:29:07 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/21 02:25:42 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:32:43 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,40 +84,17 @@ int	get_pos_num_max(t_stack *stack)
 	return (pos);
 }
 
-int	get_min(t_stack *stack)
+int	get_pos_num(t_stack *stack, int num)
 {
 	t_list	*current;
-	int		min;
+	int		pos;
 
-	if (!stack || !stack->head)
-		return (-1);
+	pos = 0;
 	current = stack->head;
-	min = *(int *)(current->content);
-	current = current->next;
-	while (current != NULL)
+	while (*(int *)(current->content) != num)
 	{
-		if (*(int *)(current->content) < min)
-			min = *(int *)(current->content);
+		pos++;
 		current = current->next;
 	}
-	return (min);
-}
-
-int	get_max(t_stack *stack)
-{
-	t_list	*current;
-	int		max;
-
-	if (!stack || !stack->head)
-		return (-1);
-	current = stack->head;
-	max = *(int *)(current->content);
-	current = current->next;
-	while (current != NULL)
-	{
-		if (*(int *)(current->content) > max)
-			max = *(int *)(current->content);
-		current = current->next;
-	}
-	return (max);
+	return (pos);
 }

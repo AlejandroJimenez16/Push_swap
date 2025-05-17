@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:23:51 by alejandj          #+#    #+#             */
-/*   Updated: 2025/05/16 13:26:45 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:42:25 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ typedef struct s_stack
 	t_list	*head;
 }			t_stack;
 
+typedef struct s_chunk_info
+{
+	int	size;
+	int	chunk_size;
+	int	chunk_count;
+	int	low;
+	int	high;
+}		t_chunk_info;
+
 // Additional Functions
 void		free_stack(t_stack *stack);
 void		free_arr(char **arr);
@@ -30,7 +39,6 @@ void		print_errors(t_stack *stack_a, t_stack *stack_b);
 void		print_errors_arr(t_stack *stack_a, t_stack *stack_b, char **arr);
 void		print_errors_num_node(t_stack *stack_a, t_stack *stack_b,
 				t_list *node, int *num);
-void		print_stack(t_stack *stack);
 int			is_duplicate(t_stack *stack_a, int n);
 
 // Rules
@@ -57,8 +65,7 @@ void		rrr(t_stack **stack_a, t_stack **stack_b);
 int			is_sort(t_stack **stack);
 int			get_pos_num_min(t_stack *stack);
 int			get_pos_num_max(t_stack *stack);
-int			get_min(t_stack *stack);
-int			get_max(t_stack *stack);
+int			get_pos_num(t_stack *stack, int num);
 void		manage_sort(t_stack **stack_a, t_stack **stack_b);
 
 int			*stack_to_array(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:52:19 by alejandj          #+#    #+#             */
-/*   Updated: 2025/04/24 17:32:23 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/05/17 00:55:39 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	main(int argc, char *argv[])
 	{
 		free_stack(stack_a);
 		free_stack(stack_b);
-		return (0);
+		return (1);
 	}
 	validate_fill_stack(argc, argv, &stack_a, &stack_b);
 	manage_sort(&stack_a, &stack_b);
