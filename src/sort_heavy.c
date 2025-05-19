@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:36:02 by alejandj          #+#    #+#             */
-/*   Updated: 2025/05/17 18:50:36 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/05/19 12:55:57 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	move_up_number(t_stack **stack_a, int value)
 	int		pos;
 
 	pos = get_pos_num(*stack_a, value);
+	if (pos == 0)
+		return ;
 	if (pos <= ft_lstsize((*stack_a)->head) / 2)
 		while (pos-- > 0)
 			ra(stack_a);
@@ -25,7 +27,8 @@ void	move_up_number(t_stack **stack_a, int value)
 			rra(stack_a);
 }
 
-void	push_b_chunk(t_stack **stack_a, t_stack **stack_b, int low, int high)
+void	push_b_chunk(t_stack **stack_a, t_stack **stack_b,
+		const t_chunk_info *chunk)
 {
 	t_list	*current;
 	int		value;
@@ -39,11 +42,11 @@ void	push_b_chunk(t_stack **stack_a, t_stack **stack_b, int low, int high)
 		while (current != NULL)
 		{
 			value = *(int *)(current->content);
-			if (value >= low && value <= high)
+			if (value >= chunk->low && value <= chunk->high)
 			{
 				move_up_number(stack_a, value);
 				pb(stack_b, stack_a);
-				if (value < (low + high) / 2)
+				if (value < (chunk->low + chunk->high) / 2)
 					rb(stack_b);
 				found = 1;
 				break ;
@@ -94,7 +97,7 @@ void	process_chunks(t_chunk_info *chunk, int *arr,
 			chunk->high = arr[chunk->size - 1];
 		else
 			chunk->high = arr[(i + 1) * chunk->chunk_size - 1];
-		push_b_chunk(stack_a, stack_b, chunk->low, chunk->high);
+		push_b_chunk(stack_a, stack_b, chunk);
 		i++;
 	}
 }
@@ -114,8 +117,8 @@ void	sort_heavy(t_stack **stack_a, t_stack **stack_b)
 	if (chunk.size <= 100)
 		chunk.chunk_count = 4;
 	else
-		chunk.chunk_count = 7;
-	chunk.chunk_size = chunk.size / chunk.chunk_count;
+		chunk.chunk_count = 9;
+	chunk.chunk_size = (chunk.size / chunk.chunk_count) + 3;
 	process_chunks(&chunk, arr, stack_a, stack_b);
 	free(arr);
 	push_max_a(stack_a, stack_b);
