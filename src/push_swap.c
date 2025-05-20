@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:52:19 by alejandj          #+#    #+#             */
-/*   Updated: 2025/05/17 00:55:39 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:59:16 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,11 @@ void	init_stacks(t_stack **stack_a, t_stack **stack_b)
 {
 	*stack_a = malloc(sizeof(t_stack));
 	if (!*stack_a)
-	{
-		write(2, "Error\n", 6);
-		free_stack(*stack_a);
-		exit(1);
-	}
+		print_errors(NULL, NULL);
 	(*stack_a)->head = NULL;
 	*stack_b = malloc(sizeof(t_stack));
 	if (!*stack_b)
-		print_errors(*stack_a, *stack_b);
+		print_errors(*stack_a, NULL);
 	(*stack_b)->head = NULL;
 }
 
@@ -108,13 +104,9 @@ int	main(int argc, char *argv[])
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	init_stacks(&stack_a, &stack_b);
 	if (argc < 2)
-	{
-		free_stack(stack_a);
-		free_stack(stack_b);
 		return (1);
-	}
+	init_stacks(&stack_a, &stack_b);
 	validate_fill_stack(argc, argv, &stack_a, &stack_b);
 	manage_sort(&stack_a, &stack_b);
 	free_stack(stack_a);
