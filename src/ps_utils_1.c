@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 22:19:54 by alejandj          #+#    #+#             */
-/*   Updated: 2025/05/17 17:40:06 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/05/23 20:16:17 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_stack(t_stack *stack)
 	t_list	*current;
 	t_list	*next;
 
+	if (!stack)
+		return ;
 	current = stack->head;
 	while (current != NULL)
 	{
