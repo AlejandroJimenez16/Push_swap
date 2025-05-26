@@ -6,7 +6,7 @@
 /*   By: alejandj <alejandj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:52:19 by alejandj          #+#    #+#             */
-/*   Updated: 2025/05/20 16:59:16 by alejandj         ###   ########.fr       */
+/*   Updated: 2025/05/26 14:37:39 by alejandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	is_number(char *arg)
 	i = 0;
 	if (arg[i] == '-' || arg[i] == '+')
 		i++;
+	if (arg[i] == '\0')
+		return (0);
 	while (arg[i] != '\0')
 	{
 		if (!ft_isdigit(arg[i]))
@@ -69,7 +71,7 @@ void	validate_fill_stack(int argc, char *argv[], t_stack **stack_a,
 	while (i < argc)
 	{
 		arr = ft_split(argv[i], ' ');
-		if (!arr)
+		if (!arr || arr[0] == NULL || arr[0][0] == '\0')
 			print_errors_arr(*stack_a, *stack_b, arr);
 		j = 0;
 		while (arr[j] != NULL)
